@@ -1,45 +1,39 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { Component } from 'react'
-import { styles } from './styles'
 
-//1. Functional Component
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Muhammad Afifuddin</Text>
+
+      {/* fontSize  */}
+      <View>
+        <Text style={{ fontSize: 10 }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 15 }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 20 }}>Muhammad Afifuddin</Text>
+      </View>
+
+      {/* fontWeight  */}
+      <View style={{ marginTop: 30 }}>
+        <Text style={{ fontSize: 20, fontWeight: '100' }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 20, fontWeight: '200' }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'normal' }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Muhammad Afifuddin</Text>
+      </View>
+
+      {/* fontStyle  */}
+      <View style={{ marginTop: 30 }}>
+        <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Muhammad Afifuddin</Text>
+        <Text style={{ fontSize: 20 }}>Muhammad Afifuddin</Text>
+      </View>
+
     </View>
   );
 }
 
-//2. Arrow Function Component
-// const App = () => {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Muhammad Afif</Text>
-//     </View>
-//   )
-// }
-// export default App
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 30
+  },
+});
 
-//3. Class Component
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Muhammad Afifuddin</Text>
-//       </View>
-//     )
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
-// di CSS 
-// background-color: #fff; 
