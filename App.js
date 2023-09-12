@@ -4,25 +4,11 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      {/* fontSize  */}
-      <View>
-        <Text style={{ fontSize: 10 }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 15 }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 20 }}>Muhammad Afifuddin</Text>
-      </View>
-
-      {/* fontWeight  */}
-      <View style={{ marginTop: 30 }}>
-        <Text style={{ fontSize: 20, fontWeight: '100' }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 20, fontWeight: '200' }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 20, fontWeight: 'normal' }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Muhammad Afifuddin</Text>
-      </View>
-
-      {/* fontStyle  */}
-      <View style={{ marginTop: 30 }}>
-        <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Muhammad Afifuddin</Text>
-        <Text style={{ fontSize: 20 }}>Muhammad Afifuddin</Text>
+      {/* Margin dan Padding  */}
+      <View style={styles.card}>
+        <View style={styles.content}>
+          <Text>Hello World</Text>
+        </View>
       </View>
 
     </View>
@@ -33,7 +19,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  card: {
+    backgroundColor: 'red',
+    padding: 30,
     margin: 30
   },
+  content: {
+    backgroundColor: 'yellow'
+  }
 });
 
