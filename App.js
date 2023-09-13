@@ -4,16 +4,20 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <View style={styles.card}>
-        <Text>Border</Text>
+
+      {/* 1. Override Style. */}
+      <View>
+        <View style={[styles.card, { backgroundColor: 'red' }]} />
+        <View style={[styles.card, { backgroundColor: 'blue' }]} />
+        <View style={[styles.card, { backgroundColor: 'green' }]} />
       </View>
 
-      <View style={styles.garis} />
-
-      {/* border width 
-      border color 
-      border style 
-      border radius */}
+      {/* 2. Use variable. */}
+      <View>
+        <View style={styles.card2("red")} />
+        <View style={styles.card2("blue")} />
+        <View style={styles.card2("green")} />
+      </View>
 
     </View>
   );
@@ -26,15 +30,13 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   card: {
-    width: 100,
     height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
+    width: 100,
   },
-  garis: {
-    borderWidth: 1,
-    marginTop: 10
-  }
+  card2: (color) => ({
+    height: 100,
+    width: 100,
+    backgroundColor: color,
+  })
 });
 
