@@ -4,12 +4,19 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      {/* Margin dan Padding  */}
-      <View style={styles.card}>
-        <View style={styles.content}>
-          <Text>Hello World</Text>
-        </View>
+      <View style={styles.wrapperKotak}>
+        {/* Kotak Merah  */}
+        <View style={styles.merah} />
+        {/* Kotak Biru  */}
+        <View style={styles.biru} />
+        {/* Kotak Hijau */}
+        <View style={styles.hijau} />
       </View>
+
+      {/* 1. Flex
+      2. Flex Direction 
+      3. Justify Content 
+      4. Align Items */}
 
     </View>
   );
@@ -19,14 +26,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: 30
   },
-  card: {
+  merah: {
     backgroundColor: 'red',
-    padding: 30,
-    margin: 30
+    width: 100,
+    height: 100
   },
-  content: {
-    backgroundColor: 'yellow'
+  biru: {
+    backgroundColor: 'blue',
+    width: 100,
+    height: 100
+  },
+  hijau: {
+    backgroundColor: 'green',
+    width: 100,
+    height: 100
+  },
+  wrapperKotak: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 
