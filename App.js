@@ -1,4 +1,5 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Tombol from './components/Tombol';
 
 export default function App() {
 
@@ -10,12 +11,11 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      {/* <Button title="Submit" color="red" onPress={() => handleSubmit()} /> */}
+      <Tombol handleSubmit={handleSubmit} title="Submit 1" />
 
-      <TouchableOpacity style={styles.button} onPress={() => handleSubmit()} >
-        <Text style={{ color: 'white' }}>SUBMIT</Text>
-      </TouchableOpacity>
+      <Tombol handleSubmit={handleSubmit} title="Submit 2" />
 
+      <Tombol handleSubmit={handleSubmit} title="Submit 3" />
 
     </View>
   );
@@ -27,13 +27,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 30,
   },
-  button: {
-    backgroundColor: 'red',
-    padding: 10,
-    width: 100,
-    alignItems: 'center',
-    borderRadius: 10,
-    margin: 20
-  }
 });
 
