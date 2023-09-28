@@ -2,22 +2,28 @@ import { StyleSheet, View, Text } from 'react-native';
 import Tombol from './components/Tombol';
 import { useState } from 'react';
 
-//Variabel dari javascript (let, const, var)
-//Variabel dari react (state, props)
-//state = bisa diubah
-//props = tidak bisa diubah dan bisa jadi berasal dari state
-
 export default function App() {
-  const [nama, setNama] = useState("Afif")
+  const [tampil, setTampil] = useState(false);
 
-  // const handleSubmit = () => {
-  //   setNama("Rudi")
+  //1. If else
+  // if (tampil) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.text}>Tampil</Text>
+  //     </View>
+  //   );
   // }
+
+  // 2. If else pakai ternary operator
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{nama}</Text>
-      <Tombol title={nama} handleSubmit={() => setNama("Rudi")} />
+      {tampil ? <Text style={styles.text}>Tampil</Text> : <Text style={styles.text}>Tidak Tampil</Text>}
+
+      {/* {tampil && <Text style={styles.text}>Tampil</Text>} */}
+
+
+      <Tombol title="Ganti" handleSubmit={() => setTampil(!tampil)} />
     </View>
   );
 }
