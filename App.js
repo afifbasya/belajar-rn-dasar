@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from 'react-native';
-import Card from './components/Card';
+import CardComponent from './components/CardComponent';
 import { useState } from 'react';
 import Tombol from './components/Tombol';
 
@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {pasang && <Card />}
+      {pasang && <CardComponent />}
 
       <Tombol title="Copot Component Card" handleSubmit={() => setPasang(false)} />
     </View>
