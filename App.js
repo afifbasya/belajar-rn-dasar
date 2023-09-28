@@ -1,29 +1,16 @@
 import { StyleSheet, View, Text } from 'react-native';
-import Tombol from './components/Tombol';
+import Card from './components/Card';
 import { useState } from 'react';
+import Tombol from './components/Tombol';
 
 export default function App() {
-  const [tampil, setTampil] = useState(false);
-
-  //1. If else
-  // if (tampil) {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text style={styles.text}>Tampil</Text>
-  //     </View>
-  //   );
-  // }
-
-  // 2. If else pakai ternary operator
+  const [pasang, setPasang] = useState(true);
 
   return (
     <View style={styles.container}>
-      {tampil ? <Text style={styles.text}>Tampil</Text> : <Text style={styles.text}>Tidak Tampil</Text>}
+      {pasang && <Card />}
 
-      {/* {tampil && <Text style={styles.text}>Tampil</Text>} */}
-
-
-      <Tombol title="Ganti" handleSubmit={() => setTampil(!tampil)} />
+      <Tombol title="Copot Component Card" handleSubmit={() => setPasang(false)} />
     </View>
   );
 }
