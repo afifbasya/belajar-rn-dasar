@@ -1,22 +1,23 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Tombol from './components/Tombol';
+import { useState } from 'react';
+
+//Variabel dari javascript (let, const, var)
+//Variabel dari react (state, props)
+//state = bisa diubah
+//props = tidak bisa diubah dan bisa jadi berasal dari state
 
 export default function App() {
+  const [nama, setNama] = useState("Afif")
 
-
-  const handleSubmit = () => {
-    console.log("Halooo");
-  }
+  // const handleSubmit = () => {
+  //   setNama("Rudi")
+  // }
 
   return (
     <View style={styles.container}>
-
-      <Tombol handleSubmit={handleSubmit} title="Submit 1" />
-
-      <Tombol handleSubmit={handleSubmit} title="Submit 2" />
-
-      <Tombol handleSubmit={handleSubmit} title="Submit 3" />
-
+      <Text style={styles.text}>{nama}</Text>
+      <Tombol title={nama} handleSubmit={() => setNama("Rudi")} />
     </View>
   );
 }
@@ -27,5 +28,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 30,
   },
+  text: {
+    margin: 20,
+    fontSize: 20
+  }
 });
 
