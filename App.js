@@ -1,41 +1,73 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { RadioGroup } from 'react-native-radio-buttons-group';
+import Checkbox from 'expo-checkbox';
 
-const genders = [
+const minats = [
   {
-    id: "Laki-Laki",
-    label: "Laki-Laki",
-    value: "Laki-Laki"
+    id: 1,
+    label: "Sepak Bola"
   },
   {
-    id: "Perempuan",
-    label: "Perempuan",
-    value: "Perempuan"
+    id: 2,
+    label: "Musik"
+  },
+  {
+    id: 3,
+    label: "Teater"
+  },
+  {
+    id: 4,
+    label: "Menari"
   }
 ]
 
 
 export default function App() {
-  const [jenisKelamin, setJenisKelamin] = useState(false);
-
+  const [dataMinat, setMinat] = useState([]);
 
   const handleSubmit = () => {
-    console.log("Haloo : ", jenisKelamin);
+    console.log("Haloo : ", dataMinat);
+  }
+
+  const handleCheck = (minat, check) => {
+
+    if (check.length > 0) {
+
+      //hapus data
+      const newData = dataMinat.filter((filter) => filter.id !== minat.id)
+
+      setMinat(newData)
+
+
+    } else {
+      // tambah data 
+      setMinat([
+        ...dataMinat,
+        minat
+      ])
+    }
+
+
   }
 
   return (
     <View style={styles.container}>
 
       <View style={styles.wrapper}>
-        <Text>Pilih Jenis Kelamin</Text>
-        <RadioGroup
-          radioButtons={genders}
-          onPress={(item) => setJenisKelamin(item)}
-          selectedId={jenisKelamin}
-          containerStyle={{ alignItems: 'flex-start', marginTop: 5 }}
-          layout='row'
-        />
+        <Text>Minat dan Bakat : </Text>
+        {minats.map((minat) => {
+
+          const check = dataMinat.filter((filter) => filter.id == minat.id)
+
+          return (
+            <View key={minat.id} style={styles.checkbox}>
+              <Checkbox
+                value={check.length > 0 ? true : false} onValueChange={() => handleCheck(minat, check)}
+              />
+              <Text>{minat.label}</Text>
+            </View>
+          )
+        })}
       </View>
 
       <TouchableOpacity onPress={() => handleSubmit()} style={styles.button}>
@@ -64,4 +96,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 30
   },
+  checkbox: {
+    flexDirection: 'row',
+    gap: 5,
+    marginTop: 10
+  }
 })
