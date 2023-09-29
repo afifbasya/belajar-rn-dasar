@@ -1,57 +1,76 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 
 export default function App() {
-  const [users, setUser] = useState([]);
-  const [error, setError] = useState(false);
+  const [username, setUsername] = useState("");
+  const [nohp, setNoHP] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [password, setPassword] = useState("");
+  const [hidden, setHidden] = useState(true);
 
-  useEffect(() => {
-
-    const getUser = async () => {
-
-      // fetch
-      // fetch('https://jsonplaceholder.typicode.com/users')
-      //   .then(response => response.json())
-      //   .then(json => setUser(json))
-      //   .catch(err => {
-      //     setError(err.message)
-      //   })
-
-      //axios
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-
-        setUser(response.data)
-
-      } catch (err) {
-        setError(err.message)
-      }
+  const handleSubmit = () => {
+    const params = {
+      username,
+      nohp,
+      alamat,
+      password
     }
 
-    getUser();
-
-  }, [])
-
-  const renderItem = ({ item }) => {
-    return (
-      <View style={styles.item}>
-        <Text>{item.name}</Text>
-        <Text>{item.email}</Text>
-      </View>
-    )
+    console.log("Params : ", params);
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.wrapperInput}>
+        <Text>Username : </Text>
+        <TextInput
+          value={username}
+          style={styles.input}
+          placeholder='Masukkan Username'
+          onChangeText={(value) => setUsername(value)}
+        />
+      </View>
 
-      {error && <Text>{error}</Text>}
+      <View style={styles.wrapperInput}>
+        <Text>No. HP : </Text>
+        <TextInput
+          value={nohp}
+          style={styles.input}
+          placeholder='Masukkan No. HP'
+          onChangeText={(value) => setNoHP(value)}
+          inputMode='tel'
+        />
+      </View>
 
-      <FlatList
-        data={users}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <View style={styles.wrapperInput}>
+        <Text>Alamat : </Text>
+        <TextInput
+          value={alamat}
+          style={styles.inputMulti}
+          placeholder='Masukkan Alamat'
+          onChangeText={(value) => setAlamat(value)}
+          multiline
+          numberOfLines={4}
+        />
+      </View>
+
+      <View style={styles.wrapperInput}>
+        <Text>Password : </Text>
+        <TextInput
+          value={password}
+          style={styles.input}
+          placeholder='Masukkan Password'
+          onChangeText={(value) => setPassword(value)}
+          secureTextEntry={hidden}
+        />
+        <TouchableOpacity style={styles.show} onPress={() => setHidden(!hidden)}>
+          <Text>{hidden ? "Show" : "Hide"}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity onPress={() => handleSubmit()} style={styles.button}>
+        <Text style={{ color: 'white' }}>Submit</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -62,10 +81,38 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     flex: 1
   },
-  item: {
-    marginBottom: 10,
+  wrapperInput: {
     marginHorizontal: 30,
-    padding: 10,
-    borderWidth: 1
+    marginTop: 10,
+  },
+  input: {
+    borderWidth: 1,
+    fontSize: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginTop: 5,
+    borderRadius: 5
+  },
+  inputMulti: {
+    borderWidth: 1,
+    fontSize: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginTop: 5,
+    borderRadius: 5,
+    textAlignVertical: 'top'
+  },
+  show: {
+    position: "absolute",
+    right: 10,
+    top: 35
+  },
+  button: {
+    marginHorizontal: 30,
+    backgroundColor: 'blue',
+    marginTop: 20,
+    paddingVertical: 15,
+    alignItems: 'center',
+    borderRadius: 5
   }
 })
