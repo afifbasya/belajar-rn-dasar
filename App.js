@@ -1,73 +1,44 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Checkbox from 'expo-checkbox';
-
-const minats = [
-  {
-    id: 1,
-    label: "Sepak Bola"
-  },
-  {
-    id: 2,
-    label: "Musik"
-  },
-  {
-    id: 3,
-    label: "Teater"
-  },
-  {
-    id: 4,
-    label: "Menari"
-  }
-]
-
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment'
 
 export default function App() {
-  const [dataMinat, setMinat] = useState([]);
+  const [tanggal, setTanggal] = useState(new Date());
+  const [show, setShow] = useState(false)
 
   const handleSubmit = () => {
-    console.log("Haloo : ", dataMinat);
+    console.log("Haloo : ");
   }
 
-  const handleCheck = (minat, check) => {
-
-    if (check.length > 0) {
-
-      //hapus data
-      const newData = dataMinat.filter((filter) => filter.id !== minat.id)
-
-      setMinat(newData)
-
-
-    } else {
-      // tambah data 
-      setMinat([
-        ...dataMinat,
-        minat
-      ])
-    }
-
-
+  const handleTanggal = (event, value) => {
+    setTanggal(value);
+    setShow(false)
   }
+
 
   return (
     <View style={styles.container}>
 
       <View style={styles.wrapper}>
-        <Text>Minat dan Bakat : </Text>
-        {minats.map((minat) => {
+        <Text>Tanggal : </Text>
 
-          const check = dataMinat.filter((filter) => filter.id == minat.id)
+        <View style={styles.date}>
+          <Text>{moment(tanggal).format('DD-MM-YYYY')}</Text>
 
-          return (
-            <View key={minat.id} style={styles.checkbox}>
-              <Checkbox
-                value={check.length > 0 ? true : false} onValueChange={() => handleCheck(minat, check)}
-              />
-              <Text>{minat.label}</Text>
-            </View>
-          )
-        })}
+          <TouchableOpacity onPress={() => setShow(true)}>
+            <Text>Pilih</Text>
+          </TouchableOpacity>
+        </View>
+
+
+        {show && (
+          <DateTimePicker
+            mode="date"
+            value={tanggal}
+            onChange={handleTanggal}
+          />
+        )}
       </View>
 
       <TouchableOpacity onPress={() => handleSubmit()} style={styles.button}>
@@ -96,9 +67,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 30
   },
-  checkbox: {
+  date: {
     flexDirection: 'row',
-    gap: 5,
-    marginTop: 10
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    padding: 10,
+    marginTop: 5,
+    borderRadius: 5
   }
 })
