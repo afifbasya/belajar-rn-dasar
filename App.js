@@ -1,97 +1,40 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Dropdown } from 'react-native-element-dropdown';
-import axios from 'axios';
+import { RadioGroup } from 'react-native-radio-buttons-group';
 
-const pendidikans = [
+const genders = [
   {
-    id: 1,
-    label: "SD"
+    id: "Laki-Laki",
+    label: "Laki-Laki",
+    value: "Laki-Laki"
   },
   {
-    id: 2,
-    label: "SMP"
-  },
-  {
-    id: 3,
-    label: "SMA"
-  },
-  {
-    id: 4,
-    label: "S1"
-  },
-  {
-    id: 5,
-    label: "S2"
-  },
+    id: "Perempuan",
+    label: "Perempuan",
+    value: "Perempuan"
+  }
 ]
 
+
 export default function App() {
-  const [pendTerakhir, setPendidikan] = useState(false);
-  const [guru, setGuru] = useState(false);
-  const [dataGuru, setDataGuru] = useState([]);
-
-  useEffect(() => {
-
-    const getGuru = async () => {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-
-        setDataGuru(response.data)
-
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    getGuru();
-
-  }, [])
+  const [jenisKelamin, setJenisKelamin] = useState(false);
 
 
   const handleSubmit = () => {
-    const params = {
-      pendTerakhir,
-      guru
-    }
-
-    console.log("Params : ", params);
+    console.log("Haloo : ", jenisKelamin);
   }
 
   return (
     <View style={styles.container}>
 
       <View style={styles.wrapper}>
-        <Text>Pendidikan Terakhir : </Text>
-        <Dropdown
-          style={styles.dropdown}
-          data={pendidikans}
-          search
-          labelField="label"
-          valueField="label"
-          placeholder='Pilih Pendidikan'
-          searchPlaceholder="Cari"
-          onChange={item => {
-            setPendidikan(item.label)
-          }}
-          value={pendTerakhir}
-        />
-      </View>
-
-      <View style={styles.wrapper}>
-        <Text>Guru : </Text>
-        <Dropdown
-          style={styles.dropdown}
-          data={dataGuru}
-          search
-          labelField="name"
-          valueField="name"
-          placeholder='Pilih Guru'
-          searchPlaceholder="Cari"
-          onChange={item => {
-            setGuru(item.name)
-          }}
-          value={guru}
+        <Text>Pilih Jenis Kelamin</Text>
+        <RadioGroup
+          radioButtons={genders}
+          onPress={(item) => setJenisKelamin(item)}
+          selectedId={jenisKelamin}
+          containerStyle={{ alignItems: 'flex-start', marginTop: 5 }}
+          layout='row'
         />
       </View>
 
@@ -121,11 +64,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 30
   },
-  dropdown: {
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginTop: 5,
-    borderRadius: 5
-  }
 })
